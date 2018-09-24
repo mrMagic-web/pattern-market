@@ -2,6 +2,7 @@ const express = require("express");
 const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const passport = require("passport");
 
 const keys = require('../../config/keys');
 
@@ -37,7 +38,7 @@ router.post('/login', (req, res) => {
                 (err, token) => {
                   res.json({
                     success: true,
-                    token: 'Bearer'
+                    token: 'Bearer ' + token
                   })
               });
             } else {
@@ -77,12 +78,25 @@ router.post("/register", (req, res) => {
           newUser.password = hash;
           newUser
             .save()
-            .then(user => res.json(user))
+            .then(user => res.json({
+              id: req.user.id,
+              firstName: req.user.firstName,
+              email: req.user.email,
+              avatar: req.user.avatar,
+              lastName: req.user.lastName
+            }))
             .catch(err => console.log(err));
         });
       });
     }
   });
+});
+
+// @route     GET /api/users/current
+// @desc      Return current user
+// @access    Private
+router.get('/current', passport.authenticate('jwt', {session: false}), (req, res) => {
+  res.json({msg: success})
 });
 
 module.exports = router;
