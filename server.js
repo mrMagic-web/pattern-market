@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const db = require('./config/keys').mongoURI;
 const users = require('./routes/api/users');
@@ -9,6 +10,10 @@ const posts = require('./routes/api/posts');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// Body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 //Connect to MongoDB
 mongoose.connect(db)
@@ -26,4 +31,3 @@ app.get('/', (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`listening on http://localhost:${PORT}`));
-
