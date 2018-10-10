@@ -4,6 +4,7 @@ const passport = require('passport');
 
 // Load validation
 const validateProfileInput = require('../../validation/profile');
+const validateProductInput = require('../../validation/product');
 
 const router = express.Router();
 
@@ -126,5 +127,64 @@ router.post('/', passport.authenticate('jwt', { session: false }),
     });
   }
 );
+
+// @route     POST /api/profile/product
+// @desc      POST add experiance to profile
+// @access    Private
+router.post('/product', passport.authenticate('jwt', { session: false } ), (req, res) => {
+  const {errors, isValid} = validateProductInput(req.body);
+
+  // Check Validation
+  if (!isValid) {
+    // Return any errors with 400 status
+    return res.status(400).json(errors);
+  }
+
+  Profile.findOne({ user: req.user.id })
+    .then(profile => {
+      const newProd = {
+        title: req.body.title,
+        company: req.body.company,
+        location: req.body.location,
+        description: req.body.description
+      }
+      // Add to experiance aray
+      profile.product.unshift(newProd);
+
+      profile.save().then(profile => res.json(profile));
+    })
+})
+
+// @route     Delete /api/product/:prod_id
+// @desc      Delete product
+// @access    Private
+router.delete('/profile/product/:prod_id', passport.authenticate('jwt', { session: false } ), (req, res) => {
+
+  Profile.findOne({ user: req.user.id })
+    .then(profile => {
+      const removeIndex = profile.product
+        .map(item => item.id)
+        .indexOf(req.params.prod_id)
+
+        // splice out of an array
+        profile.product.splice(removeIndex, 1);
+
+        // save
+        profile.save().then(profile => res.json(profile))
+    }).catch(err => res.status(404).json(err))
+})
+
+// @route     Delete /api/profile
+// @desc      Delete user and profile
+// @access    Private
+router.delete('/', passport.authenticate('jwt', { session: false } ), (req, res) => {
+
+  Profile.findOneAndRemove({ user: req.user.id })
+    .then( ()=> {
+      User.findOneAndRemove({ user: req.user.id })
+        .then(()=> res.json({ success: true}))
+    })
+    .catch(err => res.status(404).json(err))
+})
 
 module.exports = router;

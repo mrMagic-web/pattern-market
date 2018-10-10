@@ -10,7 +10,17 @@ const ProfileSchema = new Schema({
   location: { type: String },
   status: { type: String, required: true },
   skills: { type: [String], required: true },
+  skills: { type: [String], required: true },
   bio: { type: String },
+  product: [
+    {
+      title: { type: String, required: true },
+      company: { type: String, required: true },
+      location: { type: String },
+      description: { type: String }
+   
+    }
+  ],
   social: {
     youtube: { type: String },
     twitter: { type: String },
