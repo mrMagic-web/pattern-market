@@ -1,14 +1,15 @@
-import * as React from 'react';
+import * as React from "react";
 
-class Header extends React.Component<any, any>  {
+import Navbar from "../Navbar";
+
+class Header extends React.Component<any, any> {
   public render() {
     return (
       <div>
-        Header
+        <Navbar />
       </div>
     );
   }
 }
 
 export default Header;
-  
