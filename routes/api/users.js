@@ -94,9 +94,6 @@ router.post("/register", (req, res) => {
         password: req.body.password,
         avatar: avatar,
         firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        info: req.body.info,
-        title: req.body.title,
         email: req.body.email
       });
 
