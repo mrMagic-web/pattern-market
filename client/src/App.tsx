@@ -1,4 +1,6 @@
 import * as React from "react";
+import { Provider } from "react-redux";
+import store from "./store";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 
@@ -11,17 +13,19 @@ import Register from "./components/Register";
 class App extends React.Component {
   public render() {
     return (
-      <Router>
-        <div className="App">
-          <Header />
-          <Route exact={true} path="/" component={Landing} />
-          <div className="container">
-            <Route exact={true} path="/register" component={Register} />
-            <Route exact={true} path="/login" component={Login} />
+      <Provider store={store}>
+        <Router>
+          <div className="App">
+            <Header />
+            <Route exact={true} path="/" component={Landing} />
+            <div className="container">
+              <Route exact={true} path="/register" component={Register} />
+              <Route exact={true} path="/login" component={Login} />
+            </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
-      </Router>
+        </Router>
+      </Provider>
     );
   }
 }
