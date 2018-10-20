@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as classnames from "classnames";
-import axios from "axios";
+import { connect } from "react-redux";
+import { registerUser } from "../../actions/authActions";
 
 class Register extends React.Component<any, any> {
   constructor(props: any) {
@@ -22,10 +23,7 @@ class Register extends React.Component<any, any> {
       password2: this.state.password2,
       userName: this.state.userName
     };
-    axios
-      .post("/api/users/register", newUser)
-      .then(res => console.log(res.data))
-      .catch(err => this.setState({ errors: err.response.data }));
+    this.props.registerUser(newUser);
   };
   public onChange = (e: any) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -33,6 +31,8 @@ class Register extends React.Component<any, any> {
 
   public render() {
     const { userName, email, password, password2 } = this.state.errors;
+    // const { user } = this.props.auth;
+
     return (
       <div className="register">
         <div className="container">
@@ -40,7 +40,7 @@ class Register extends React.Component<any, any> {
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center  text-light">Sign Up</h1>
               <p className="lead text-center text-light">
-                Create your DevConnector account
+                Create your Sewing Pattern Market account
               </p>
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
@@ -111,4 +111,11 @@ class Register extends React.Component<any, any> {
   }
 }
 
-export default Register;
+const mapStateToProps = (state: any) => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(Register);
