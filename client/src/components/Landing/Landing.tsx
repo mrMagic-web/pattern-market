@@ -1,8 +1,14 @@
 import * as React from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "./Landing.css";
 
 class Landing extends React.Component<any, any> {
+  public componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+  }
   public render() {
     return (
       <div className="landing">
@@ -27,5 +33,7 @@ class Landing extends React.Component<any, any> {
     );
   }
 }
-
-export default Landing;
+const mapStateToProps = (state: any) => ({
+  auth: state.auth
+});
+export default connect(mapStateToProps)(Landing);

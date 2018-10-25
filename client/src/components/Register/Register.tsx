@@ -15,6 +15,11 @@ class Register extends React.Component<any, any> {
       userName: ""
     };
   }
+  public componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+  }
   public componentWillReceiveProps(nextProps: any) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
