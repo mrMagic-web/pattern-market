@@ -1,9 +1,8 @@
 import * as React from "react";
-import * as classnames from "classnames";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
-
+import TextField from "../TextField";
 class Register extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
@@ -41,7 +40,7 @@ class Register extends React.Component<any, any> {
   };
 
   public render() {
-    const { userName, email, password, password2 } = this.state.errors;
+    const errors = this.state.errors;
 
     return (
       <div className="register">
@@ -53,64 +52,38 @@ class Register extends React.Component<any, any> {
                 Create your Sewing Pattern Market account
               </p>
               <form onSubmit={this.onSubmit}>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": userName
-                    })}
-                    placeholder="Name"
-                    name="userName"
-                    value={this.state.userName}
-                    onChange={this.onChange}
-                  />
-                  {userName && (
-                    <div className="invalid-feedback">{userName}</div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="email"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": email
-                    })}
-                    placeholder="Email Address"
-                    name="email"
-                    onChange={this.onChange}
-                    value={this.state.email}
-                  />
-                  {email && <div className="invalid-feedback">{email}</div>}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": password
-                    })}
-                    placeholder="Password"
-                    name="password"
-                    onChange={this.onChange}
-                    value={this.state.password}
-                  />
-                  {password && (
-                    <div className="invalid-feedback">{password}</div>
-                  )}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": password2
-                    })}
-                    placeholder="Confirm Password"
-                    name="password2"
-                    onChange={this.onChange}
-                    value={this.state.password2}
-                  />
-                  {password2 && (
-                    <div className="invalid-feedback">{password2}</div>
-                  )}
-                </div>
+                <TextField
+                  errors={errors.userName}
+                  name="userName"
+                  placeholder="Username"
+                  onChange={this.onChange}
+                  type="text"
+                  value={this.state.userName}
+                />
+                <TextField
+                  errors={errors.email}
+                  name="email"
+                  placeholder="Email Address"
+                  onChange={this.onChange}
+                  type="email"
+                  value={this.state.email}
+                />
+                <TextField
+                  errors={errors.password}
+                  name="password"
+                  placeholder="Password"
+                  onChange={this.onChange}
+                  type="password"
+                  value={this.state.password}
+                />
+                <TextField
+                  errors={errors.password2}
+                  name="password2"
+                  placeholder="Repeat password"
+                  onChange={this.onChange}
+                  type="password2"
+                  value={this.state.password2}
+                />
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>

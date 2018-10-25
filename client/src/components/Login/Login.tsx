@@ -1,7 +1,7 @@
 import * as React from "react";
-import classnames from "classnames";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
+import TextField from "../TextField";
 class Login extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
@@ -40,7 +40,7 @@ class Login extends React.Component<any, any> {
   };
 
   public render() {
-    const { email, password } = this.state.errors;
+    const errors = this.state.errors;
 
     return (
       <div className="login">
@@ -52,32 +52,22 @@ class Login extends React.Component<any, any> {
                 Sign in to your Sewing Pattern Market account
               </p>
               <form onSubmit={this.onSubmit}>
-                <div className="form-group">
-                  <input
-                    type="email"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": email
-                    })}
-                    placeholder="Email Address"
-                    name="email"
-                    onChange={this.onChange}
-                  />
-                  {email && <div className="invalid-feedback">{email}</div>}
-                </div>
-                <div className="form-group">
-                  <input
-                    type="password"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": password
-                    })}
-                    placeholder="Password"
-                    name="password"
-                    onChange={this.onChange}
-                  />
-                  {password && (
-                    <div className="invalid-feedback">{password}</div>
-                  )}
-                </div>
+                <TextField
+                  errors={errors.email}
+                  name="email"
+                  placeholder="Email Address"
+                  onChange={this.onChange}
+                  type="email"
+                  value={this.state.email}
+                />
+                <TextField
+                  errors={errors.password}
+                  name="password"
+                  placeholder="Password"
+                  onChange={this.onChange}
+                  type="password"
+                  value={this.state.password}
+                />
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>

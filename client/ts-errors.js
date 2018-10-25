@@ -2,3 +2,4 @@
 constructor(props: any) {
     super(props);
 }
+// Type '{}' is not assignable to type 'ITextFieldProps'. Property 'name' is missing in type '{}'.
