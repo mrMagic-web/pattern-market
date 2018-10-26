@@ -1,7 +1,10 @@
 import * as React from "react";
-// import { Link } from "react-router-dom";
+
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profileActions";
+
+import Spinner from "../Spinner";
+import NoProfile from "../NoProfile";
 
 class Dashboard extends React.Component<any, any> {
   public componentDidMount() {
@@ -9,11 +12,22 @@ class Dashboard extends React.Component<any, any> {
   }
 
   public render() {
-    // const { user } = this.props.auth;
-    console.log(this.props);
-    const { profile, loading } = this.props;
-    const dashboardContent =
-      profile === null || loading ? <h1>Profile</h1> : <h1>No profile</h1>;
+    const { user } = this.props.auth;
+    const { profile, loading } = this.props.profile;
+
+    let dashboardContent;
+
+    if (profile === null || loading) {
+      dashboardContent = <Spinner />;
+    } else {
+      // Check if logged in user has profile data
+      if (Object.keys(profile).length > 0) {
+        dashboardContent = <h4>TODO: DISPLAY PROFILE</h4>;
+      } else {
+        // User is logged in but has no profile
+        dashboardContent = <NoProfile user={user} />;
+      }
+    }
 
     return (
       <div className="dashboard">

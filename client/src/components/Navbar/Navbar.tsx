@@ -13,7 +13,6 @@ class Navbar extends React.Component<any, any> {
     e.preventDefault();
     this.props.clearCurrentProfile();
     this.props.logOutUser();
-    window.location.href = "/";
   }
 
   public render() {
