@@ -2,8 +2,8 @@
   height: 0;
   width: 0;
   padding: 15px;
-  border: 6px solid #ccc;
-  border-right-color: #888;
+  border: 6px solid #fff;
+  border-right-color: #ccc;
   border-radius: 22px;
   -webkit-animation: rotate 1s infinite linear;
   /* left, top and position just for the demo! */

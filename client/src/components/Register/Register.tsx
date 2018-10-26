@@ -2,7 +2,7 @@ import * as React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
-import TextField from "../TextField";
+import TextField from "../FormComponents/TextField";
 class Register extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
@@ -53,7 +53,7 @@ class Register extends React.Component<any, any> {
               </p>
               <form onSubmit={this.onSubmit}>
                 <TextField
-                  errors={errors.name}
+                  error={errors.name}
                   name="name"
                   placeholder="name"
                   onChange={this.onChange}
@@ -61,7 +61,7 @@ class Register extends React.Component<any, any> {
                   value={this.state.name}
                 />
                 <TextField
-                  errors={errors.email}
+                  error={errors.email}
                   name="email"
                   placeholder="Email Address"
                   onChange={this.onChange}
@@ -69,7 +69,7 @@ class Register extends React.Component<any, any> {
                   value={this.state.email}
                 />
                 <TextField
-                  errors={errors.password}
+                  error={errors.password}
                   name="password"
                   placeholder="Password"
                   onChange={this.onChange}
@@ -77,11 +77,11 @@ class Register extends React.Component<any, any> {
                   value={this.state.password}
                 />
                 <TextField
-                  errors={errors.password2}
+                  error={errors.password2}
                   name="password2"
                   placeholder="Repeat password"
                   onChange={this.onChange}
-                  type="password2"
+                  type="password"
                   value={this.state.password2}
                 />
                 <input type="submit" className="btn btn-info btn-block mt-4" />

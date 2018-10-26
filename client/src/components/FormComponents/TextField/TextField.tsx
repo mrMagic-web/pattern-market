@@ -3,20 +3,22 @@ import classnames from "classnames";
 
 interface ITextField {
   name?: string;
-  errors?: any;
+  error?: any;
   type?: string;
   value?: string;
   placeholder?: string;
   onChange?: any;
+  info?: string;
   disabled?: boolean;
 }
 const TextField: React.SFC<ITextField> = ({
   name,
-  errors,
+  error,
   type,
   value,
   placeholder,
   onChange,
+  info,
   disabled
 }) => {
   return (
@@ -24,7 +26,7 @@ const TextField: React.SFC<ITextField> = ({
       <input
         type={type}
         className={classnames("form-control form-control-lg", {
-          "is-invalid": errors
+          "is-invalid": error
         })}
         value={value}
         placeholder={placeholder}
@@ -32,12 +34,13 @@ const TextField: React.SFC<ITextField> = ({
         onChange={onChange}
         disabled={disabled}
       />
-      {errors && <div className="invalid-feedback">{errors}</div>}
+      {info && <small className="form-text text-muted">{info}</small>}
+      {error && <div className="invalid-feedback">{error}</div>}
     </div>
   );
 };
 TextField.defaultProps = {
-  name: "Guest User"
+  type: "text"
 };
 
 export default TextField;

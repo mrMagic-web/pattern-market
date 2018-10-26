@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
-import TextField from "../TextField";
+import TextField from "../FormComponents/TextField";
 class Login extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
@@ -53,7 +53,7 @@ class Login extends React.Component<any, any> {
               </p>
               <form onSubmit={this.onSubmit}>
                 <TextField
-                  errors={errors.email}
+                  error={errors.email}
                   name="email"
                   placeholder="Email Address"
                   onChange={this.onChange}
@@ -61,7 +61,7 @@ class Login extends React.Component<any, any> {
                   value={this.state.email}
                 />
                 <TextField
-                  errors={errors.password}
+                  error={errors.password}
                   name="password"
                   placeholder="Password"
                   onChange={this.onChange}
