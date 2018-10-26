@@ -5,12 +5,14 @@ import store from "./store";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logOutUser } from "./actions/authActions";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { clearCurrentProfile } from "./actions/profileActions";
 
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Landing from "./components/Landing";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Dashboard from "./components/Dashboard";
 import "./App.css";
 
 const localToken = localStorage.jwtToken;
@@ -28,7 +30,8 @@ if (localToken) {
   const curentTime = Date.now() / 1000;
   if (decoded.exp < curentTime) {
     store.dispatch(logOutUser());
-    // TODO Clear current profile
+    store.dispatch(clearCurrentProfile());
+
     // Redirect to login
     window.location.href = "/login";
   }
@@ -45,6 +48,7 @@ class App extends React.Component {
             <div className="container">
               <Route exact={true} path="/register" component={Register} />
               <Route exact={true} path="/login" component={Login} />
+              <Route exact={true} path="/dashboard" component={Dashboard} />
             </div>
             <Footer />
           </div>

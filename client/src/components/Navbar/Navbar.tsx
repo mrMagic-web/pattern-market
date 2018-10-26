@@ -2,6 +2,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { logOutUser } from "../../actions/authActions";
+import { clearCurrentProfile } from "../../actions/profileActions";
 import "./Navbar.css";
 class Navbar extends React.Component<any, any> {
   constructor(props: any) {
@@ -10,7 +11,9 @@ class Navbar extends React.Component<any, any> {
   }
   public onLogoutClick(e: any) {
     e.preventDefault();
+    this.props.clearCurrentProfile();
     this.props.logOutUser();
+    window.location.href = "/";
   }
 
   public render() {
@@ -77,5 +80,5 @@ const mapStateToProps = (state: any) => ({
 
 export default connect(
   mapStateToProps,
-  { logOutUser }
+  { logOutUser, clearCurrentProfile }
 )(Navbar);

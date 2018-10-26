@@ -1,17 +1,35 @@
 import axios from "axios";
-import { GET_PROFILE } from "./types";
+import { GET_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE } from "./types";
 
-// register user
-export const registerUser = (userData: any, history: any) => (
-  dispatch: any
-) => {
+// Get current profile
+export const getCurrentProfile = () => (dispatch: any) => {
+  dispatch(setProfileLoading());
   axios
-    .post("/api/users/register", userData)
-    .then(res => history.push("/login"))
+    .get("/api/profile")
+    .then(res =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    )
     .catch(err =>
       dispatch({
         type: GET_PROFILE,
-        payload: err.response.data
+        payload: {}
       })
     );
+};
+
+// Profile loading
+export const setProfileLoading = () => {
+  return {
+    type: PROFILE_LOADING
+  };
+};
+
+// Clear profile
+export const clearCurrentProfile = () => {
+  return {
+    type: CLEAR_CURRENT_PROFILE
+  };
 };
