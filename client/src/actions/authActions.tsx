@@ -23,23 +23,23 @@ export const loginUser = (userData: object) => (dispatch: any) => {
   axios
     .post("/api/users/login", userData)
     .then(res => {
-      // Save to localStorege
+      // Save to localStorage
       const { token } = res.data;
+      // Set token to ls
       localStorage.setItem("jwtToken", token);
-      // set token to Auth header
+      // Set token to Auth header
       setAuthToken(token);
-
-      // decode token to get user data
+      // Decode token to get user data
       const decoded = jwt_decode(token);
-      // set current user
+      // Set current user
       dispatch(setCurrentUser(decoded));
     })
-    .catch(err => {
+    .catch(err =>
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
-      });
-    });
+      })
+    );
 };
 
 // Set logged in user

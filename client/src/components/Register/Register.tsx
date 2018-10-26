@@ -11,7 +11,7 @@ class Register extends React.Component<any, any> {
       errors: {},
       password: "",
       password2: "",
-      userName: ""
+      name: ""
     };
   }
   public componentDidMount() {
@@ -31,7 +31,7 @@ class Register extends React.Component<any, any> {
       email: this.state.email,
       password: this.state.password,
       password2: this.state.password2,
-      userName: this.state.userName
+      name: this.state.name
     };
     this.props.registerUser(newUser, this.props.history);
   };
@@ -53,12 +53,12 @@ class Register extends React.Component<any, any> {
               </p>
               <form onSubmit={this.onSubmit}>
                 <TextField
-                  errors={errors.userName}
-                  name="userName"
-                  placeholder="Username"
+                  errors={errors.name}
+                  name="name"
+                  placeholder="name"
                   onChange={this.onChange}
                   type="text"
-                  value={this.state.userName}
+                  value={this.state.name}
                 />
                 <TextField
                   errors={errors.email}

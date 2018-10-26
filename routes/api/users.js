@@ -39,7 +39,7 @@ router.post("/login", (req, res) => {
         // User matched
         const payload = {
           id: user.id,
-          userName: user.userName,
+          name: user.name,
           avatar: user.avatar,
           firstName: user.firstName,
           lastName: user.lastName,
@@ -90,7 +90,7 @@ router.post("/register", (req, res) => {
         d: "mm" // default image if none
       });
       const newUser = new User({
-        userName: req.body.userName,
+        name: req.body.name,
         password: req.body.password,
         avatar: avatar,
         firstName: req.body.firstName,
