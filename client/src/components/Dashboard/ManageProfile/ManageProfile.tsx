@@ -5,12 +5,14 @@ import TextField from "../../FormComponents/TextField";
 import SelectList from "../../FormComponents/SelectList";
 import TextArea from "../../FormComponents/TextArea";
 import InputGroup from "../../FormComponents/InputGroup";
+// import isEmpty from "../../../validation/is-empty";
+
 import {
   createProfile,
   getCurrentProfile
 } from "../../../actions/profileActions";
 
-class CreateProfile extends React.Component<any, any> {
+class ManageProfile extends React.Component<any, any> {
   public constructor(props: any) {
     super(props);
     this.state = {
@@ -39,6 +41,14 @@ class CreateProfile extends React.Component<any, any> {
   public componentWillReceiveProps(nextProps: any) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
+    }
+    if (nextProps.profile.profile) {
+      const { skills, social, ...profile } = nextProps.profile.profile;
+      this.setState(() => ({
+        ...profile,
+        ...social,
+        skills: skills ? skills.join(",") : null
+      }));
     }
   }
   public onSubmit = (e: any): void => {
@@ -135,19 +145,16 @@ class CreateProfile extends React.Component<any, any> {
       },
       {
         label: "Other",
-        value: "Othe"
+        value: "Other"
       }
     ];
-
+    const edit = this.props.location.state;
     return (
       <div className="create-profile">
-        <div className="container">
+        <div className="container m-4">
           <div className="row">
             <div className="col-md-8 m-auto text-light">
-              <h2 className="display-4 text-centre">Create your profile</h2>
-              <p className="lead text-center">
-                Let's get some information to get your profile stand out
-              </p>
+              <h2 className="mt-4">{edit ? "Edit" : "Create"} Your Profile</h2>
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
                 <TextField
@@ -217,11 +224,10 @@ class CreateProfile extends React.Component<any, any> {
                   </button>
                   <br />
                   <span className="text-muted">optional</span>
-
                   {socialInputs}
                   <input
                     type="submit"
-                    value="Submit"
+                    value={edit ? "Update Profile" : "Create Profile"}
                     className="btn btn-info btn-block mt-4"
                   />
                 </div>
@@ -242,4 +248,4 @@ const mapStateToProps = (state: any) => ({
 export default connect(
   mapStateToProps,
   { createProfile, getCurrentProfile }
-)(withRouter(CreateProfile));
+)(withRouter(ManageProfile));

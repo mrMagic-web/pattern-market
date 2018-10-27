@@ -14,7 +14,7 @@ import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
-import EditProfile from "./components/Dashboard/EditProfile";
+import ManageProfile from "./components/Dashboard/ManageProfile";
 import "./App.css";
 
 const localToken = localStorage.jwtToken;
@@ -53,13 +53,15 @@ class App extends React.Component {
               <Switch>
                 <PrivateRoute
                   exact={true}
-                  path="/manage-profile"
-                  component={EditProfile}
-                />
-                <PrivateRoute
-                  exact={true}
                   path="/dashboard"
                   component={Dashboard}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact={true}
+                  path="/manage-profile"
+                  component={ManageProfile}
                 />
               </Switch>
             </div>

@@ -21,6 +21,16 @@ class Navbar extends React.Component<any, any> {
     const authLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
+          <Link
+            to={{
+              pathname: "/dashboard"
+            }}
+            className="nav-link"
+          >
+            <i className="fas fa-cogs mr-1" /> Dashboard
+          </Link>
+        </li>
+        <li className="nav-item">
           <a className="nav-link" onClick={this.onLogoutClick}>
             <img src={user.avatar} alt={user.name} className="avatar" />
             Logout
