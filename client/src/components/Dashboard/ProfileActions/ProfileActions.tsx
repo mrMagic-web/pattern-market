@@ -10,17 +10,13 @@ const ProfileActions = () => {
             pathname: "/manage-profile",
             state: { edit: true }
           }}
-          className="btn btn-light"
+          className="btn btn-dark"
         >
           <i className="fas fa-user-circle text-info mr-1" /> Edit Profile
         </Link>
-        <Link to="/add-experience" className="btn btn-light">
+        <Link to="/manage-product" className="btn btn-dark">
           <i className="fab fa-black-tie text-info mr-1" />
-          Add Experience
-        </Link>
-        <Link to="/add-education" className="btn btn-light">
-          <i className="fas fa-graduation-cap text-info mr-1" />
-          Add Education
+          Add Product
         </Link>
       </div>
     </div>

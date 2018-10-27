@@ -40,6 +40,20 @@ export const createProfile = (profileData: any, history: any) => (
       })
     );
 };
+// Create Profile
+export const createProduct = (productData: any, history: any) => (
+  dispatch: any
+) => {
+  axios
+    .post("/api/profile/product", productData)
+    .then(res => history.push("/dashboard"))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
 
 // Delete account & Profile
 export const deleteAccount = () => (dispatch: any) => {
