@@ -1,11 +1,11 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import TextField from "../FormComponents/TextField";
-import SelectList from "../FormComponents/SelectList";
-import TextArea from "../FormComponents/TextArea";
-import InputGroup from "../FormComponents/InputGroup";
-import { createProfile } from "../../actions/profileActions";
+import TextField from "../../FormComponents/TextField";
+import SelectList from "../../FormComponents/SelectList";
+import TextArea from "../../FormComponents/TextArea";
+import InputGroup from "../../FormComponents/InputGroup";
+import { createProfile } from "../../../actions/profileActions";
 
 class CreateProfile extends React.Component<any, any> {
   public constructor(props: any) {

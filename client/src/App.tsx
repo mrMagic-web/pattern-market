@@ -14,7 +14,7 @@ import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
-import CreateProfile from "./components/CreateProfile";
+import CreateProfile from "./components/Dashboard/CreateProfile";
 import "./App.css";
 
 const localToken = localStorage.jwtToken;
