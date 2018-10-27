@@ -12,6 +12,28 @@ const router = express.Router();
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
 
+// @route   GET api/profile
+// @desc    Get current users profile
+// @access  Private
+router.get(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const errors = {};
+
+    Profile.findOne({ user: req.user.id })
+      .populate("user", ["name", "avatar"])
+      .then(profile => {
+        if (!profile) {
+          errors.noprofile = "There is no profile for this user";
+          return res.status(404).json(errors);
+        }
+        res.json(profile);
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
 // @route     GET /api/profile/all
 // @desc      GET get all profiles
 // @access    Public
@@ -188,20 +210,18 @@ router.delete(
   }
 );
 
-// @route     Delete /api/profile
-// @desc      Delete user and profile
-// @access    Private
+// @route   DELETE api/profile
+// @desc    Delete user and profile
+// @access  Private
 router.delete(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Profile.findOneAndRemove({ user: req.user.id })
-      .then(() => {
-        User.findOneAndRemove({ user: req.user.id }).then(() =>
-          res.json({ success: true })
-        );
-      })
-      .catch(err => res.status(404).json(err));
+    Profile.findOneAndRemove({ user: req.user.id }).then(() => {
+      User.findOneAndRemove({ _id: req.user.id }).then(() =>
+        res.json({ success: true })
+      );
+    });
   }
 );
 
