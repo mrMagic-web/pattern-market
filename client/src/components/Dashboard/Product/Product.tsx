@@ -4,7 +4,6 @@ import { deleteProduct } from "../../../actions/profileActions";
 
 class Product extends React.Component<any, any> {
   public onDeleteProduct(id: string) {
-    console.log(id);
     this.props.deleteProduct(id);
   }
   public render() {
