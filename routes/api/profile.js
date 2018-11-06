@@ -191,7 +191,7 @@ router.post(
 // @desc      Delete product
 // @access    Private
 router.delete(
-  "/profile/product/:prod_id",
+  "/product/:prod_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOne({ user: req.user.id })

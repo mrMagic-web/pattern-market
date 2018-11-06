@@ -55,6 +55,24 @@ export const createProduct = (productData: any, history: any) => (
     );
 };
 
+// Delete Profile
+export const deleteProduct = (id: any) => (dispatch: any) => {
+  axios
+    .delete(`/api/profile/product/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 // Delete account & Profile
 export const deleteAccount = () => (dispatch: any) => {
   if (window.confirm("Are you sure? This can NOT be undone!")) {

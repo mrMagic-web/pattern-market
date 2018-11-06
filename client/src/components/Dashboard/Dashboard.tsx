@@ -2,6 +2,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
+import Product from "./Product";
 
 import Spinner from "../Spinner";
 import NoProfile from "../Dashboard/NoProfile";
@@ -36,7 +37,7 @@ class Dashboard extends React.Component<any, any> {
               Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
             </p>
             <ProfileActions />
-            {/** TODO: Experiance and education */}
+            <Product products={profile.product} />
             <div className="mb-4" />
             <button onClick={this.onDeleteClick} className="btn btn-danger">
               Delete My Account
