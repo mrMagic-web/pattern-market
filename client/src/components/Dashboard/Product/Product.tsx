@@ -22,6 +22,10 @@ class Product extends React.Component<any, any> {
         </td>
       </tr>
     ));
+
+    if (this.props.products.length === 0) {
+      return null;
+    }
     return (
       <div className="product">
         <h4 className="mb-4">Products</h4>

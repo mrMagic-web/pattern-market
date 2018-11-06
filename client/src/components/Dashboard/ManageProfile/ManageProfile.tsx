@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import TextField from "../../FormComponents/TextField";
 import SelectList from "../../FormComponents/SelectList";
 import TextArea from "../../FormComponents/TextArea";
@@ -154,6 +154,9 @@ class ManageProfile extends React.Component<any, any> {
         <div className="container m-4">
           <div className="row">
             <div className="col-md-8 m-auto text-light">
+              <Link to="/dashboard" className="btn btn-dark mt-4 mb-4">
+                Go Back
+              </Link>
               <h2 className="mt-4">{edit ? "Edit" : "Create"} Your Profile</h2>
               <small className="d-block pb-3">* = required fields</small>
               <form onSubmit={this.onSubmit}>
