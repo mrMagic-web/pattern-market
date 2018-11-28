@@ -4,7 +4,8 @@ import {
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
   GET_ERRORS,
-  SET_CURRENT_USER
+  SET_CURRENT_USER,
+  GET_PRODUCTS
 } from "./types";
 
 // Get current profile
@@ -27,9 +28,7 @@ export const getCurrentProfile = () => (dispatch: any) => {
 };
 
 // Create Profile
-export const createProfile = (profileData: any, history: any) => (
-  dispatch: any
-) => {
+export const createProfile = (profileData: any, history: any) => (dispatch: any) => {
   axios
     .post("/api/profile", profileData)
     .then(res => history.push("/dashboard"))
@@ -41,9 +40,7 @@ export const createProfile = (profileData: any, history: any) => (
     );
 };
 // Create Profile
-export const createProduct = (productData: any, history: any) => (
-  dispatch: any
-) => {
+export const createProduct = (productData: any, history: any) => (dispatch: any) => {
   axios
     .post("/api/profile/product", productData)
     .then(res => history.push("/dashboard"))
@@ -51,6 +48,25 @@ export const createProduct = (productData: any, history: any) => (
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data
+      })
+    );
+};
+
+// Get all profiles
+export const getProducts = () => (dispatch: any) => {
+  dispatch(setProfileLoading());
+  axios
+    .get(`/api/profile/all`)
+    .then(res =>
+      dispatch({
+        type: GET_PRODUCTS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_PRODUCTS,
+        payload: null
       })
     );
 };
