@@ -9,10 +9,10 @@ class Profiles extends React.Component<any, any> {
 		this.props.getProducts();
 	}
 	public render() {
-		const { product, loading } = this.props.product;
+		const { product, loading } = this.props.profiles;
 		const message =
 			product !== undefined ? (
-				product.map((prod: any) => <ProfileItem key={product.id} product={prod} />)
+				product.map((prod: any) => <ProfileItem key={prod._id} product={prod} />)
 			) : (
 				<h4>No Products found</h4>
 			);
@@ -23,7 +23,7 @@ class Profiles extends React.Component<any, any> {
 }
 
 const mapStateToProps = (state: any) => ({
-	product: state.profile
+	profiles: state.profile
 });
 
 export default connect(

@@ -27,6 +27,25 @@ export const getCurrentProfile = () => (dispatch: any) => {
     );
 };
 
+// Get product by user handle
+export const getProductByUserHandle = (handle: any) => (dispatch: any) => {
+  dispatch(setProfileLoading());
+  axios
+    .get(`/api/profile/handle/${handle}`)
+    .then(res =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: null
+      })
+    );
+};
+
 // Create Profile
 export const createProfile = (profileData: any, history: any) => (dispatch: any) => {
   axios

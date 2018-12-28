@@ -8,7 +8,6 @@ class ProfileItem extends React.Component<any, any> {
 		return (
 			<div className="card card-body bg-light mb-3">
 				<div className="row">
-					{console.log(product)}
 					<div className="col-2">
 						<img src={product.user.avatar} alt="" className="rounded-circle" />
 					</div>
@@ -18,7 +17,7 @@ class ProfileItem extends React.Component<any, any> {
 							{product.status} {isEmpty(product.company) ? null : <span> at {product.company}</span>}{" "}
 						</p>
 						<p>{isEmpty(product.location) ? null : <span>{product.location}</span>} </p>
-						<Link to={`/product/${product.handle}`} className="btn btn-info">
+						<Link to={`/products/${product.handle}`} className="btn btn-info">
 							View product
 						</Link>
 					</div>
@@ -26,7 +25,7 @@ class ProfileItem extends React.Component<any, any> {
 						<h4>Skill set</h4>
 						<ul className="list-group">
 							{product.skills.slice(0, 4).map((skill: string, index: number) => (
-								<li key={`index-${index}`} className="list-group-item">
+								<li key={`skill-${product._id}-${index}`} className="list-group-item">
 									<i className="fa fa-check pr-1" /> {skill}
 								</li>
 							))}

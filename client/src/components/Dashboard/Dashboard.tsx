@@ -21,7 +21,7 @@ class Dashboard extends React.Component<any, any> {
 	}
 	public render() {
 		const { user } = this.props.auth;
-		const { profile, loading } = this.props.profile;
+		const { profile, loading } = this.props.profiles;
 
 		let dashboardContent;
 
@@ -65,7 +65,7 @@ class Dashboard extends React.Component<any, any> {
 }
 
 const mapStateToProps = (state: any) => ({
-	profile: state.profile,
+	profiles: state.profile,
 	auth: state.auth
 });
 
