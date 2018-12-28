@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import isEmpty from "../../../validation/is-empty";
 
-class ProductItem extends React.Component<any, any> {
+class ProfileItem extends React.Component<any, any> {
 	public render() {
 		const { product } = this.props;
 		return (
@@ -37,4 +37,4 @@ class ProductItem extends React.Component<any, any> {
 		);
 	}
 }
-export default ProductItem;
+export default ProfileItem;
