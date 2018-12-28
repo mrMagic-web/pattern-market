@@ -4,7 +4,7 @@ import Spinner from "../Spinner";
 import { getProducts } from "../../actions/profileActions";
 import ProductItem from "./ProductItem";
 
-class Products extends React.Component<any, any> {
+class Profiles extends React.Component<any, any> {
 	public componentDidMount() {
 		this.props.getProducts();
 	}
@@ -29,4 +29,4 @@ const mapStateToProps = (state: any) => ({
 export default connect(
 	mapStateToProps,
 	{ getProducts }
-)(Products);
+)(Profiles);
