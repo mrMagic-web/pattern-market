@@ -12,7 +12,7 @@ class Profiles extends React.Component<any, any> {
 		const { product, loading } = this.props.profiles;
 		const message =
 			product !== undefined ? (
-				product.map((prod: any) => <ProfileItem key={prod._id} product={prod} />)
+				product.map((prod: any) => <ProfileItem key={prod._id} profile={prod} />)
 			) : (
 				<h4>No Products found</h4>
 			);

@@ -1,12 +1,8 @@
 import * as React from "react";
 import { connect } from "react-redux";
-// import { Link } from "react-router";
-import Company from "./Company";
-import Location from "./Location";
-import Title from "./Title";
-import Description from "./Description";
 import Spinner from "../Spinner";
 import { getProductByUserHandle } from "../../actions/profileActions";
+import ProfileContent from "./ProfileContent";
 
 class Products extends React.Component<any, any> {
 	public componentDidMount() {
@@ -16,17 +12,12 @@ class Products extends React.Component<any, any> {
 		}
 	}
 	public render() {
-		if (false) {
-			return <Spinner />;
-		}
+		const { profile, loading } = this.props;
+		const profileContent = profile === null || loading ? <Spinner /> : <ProfileContent profile={profile} />;
+
 		return (
-			<div>
-				<Company />
-				<Location />
-				<Title />
-				<Description />
-				{/* <Link>Link</Link> */}
-				{console.log(this.props)}
+			<div className="profile">
+				<div className="container">{profileContent}</div>
 			</div>
 		);
 	}
