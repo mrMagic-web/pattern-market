@@ -16,6 +16,7 @@ import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import Profiles from "./components/Profiles";
 import Products from "./components/Products";
+import Posts from "./components/Posts";
 import ManageProfile from "./components/Dashboard/ManageProfile";
 import ManageProduct from "./components/Dashboard/ManageProduct";
 import "./App.css";
@@ -55,6 +56,9 @@ class App extends React.Component {
 							<Route exact={true} path="/login" component={Login} />
 							<Route exact={true} path="/profiles" component={Profiles} />
 							<Route exact={true} path="/products/:handle" component={Products} />
+							<Switch>
+								<PrivateRoute exact={true} path="/posts" component={Posts} />
+							</Switch>
 							<Switch>
 								<PrivateRoute exact={true} path="/dashboard" component={Dashboard} />
 							</Switch>

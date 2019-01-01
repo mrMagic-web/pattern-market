@@ -8,9 +8,9 @@ export const addPost = (postData: any) => (dispatch: any) => {
         type: ADD_POST,
         payload: res.data
       })
-        .catch((err: any) => dispatch({
-          type: GET_ERRORS,
-          payload: err.response.data
-        }))
-    })
+        
+    }).catch((err: any) => dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    }))
 }

@@ -21,11 +21,12 @@ class Navbar extends React.Component<any, any> {
 		const authLinks = (
 			<ul className="navbar-nav ml-auto">
 				<li className="nav-item">
-					<Link
-						to={{
-							pathname: "/dashboard"
-						}}
-						className="nav-link">
+					<Link to={{ pathname: "/posts" }} className="nav-link">
+						<i className="fas fa-comment-alt" /> Posts
+					</Link>
+				</li>
+				<li className="nav-item">
+					<Link to={{ pathname: "/dashboard" }} className="nav-link">
 						<i className="fas fa-cogs mr-1" /> Dashboard
 					</Link>
 				</li>

@@ -1,4 +1,4 @@
-// import { PROFILE_LOADING } from "../actions/types";
+import { ADD_POST } from "../actions/types";
 
 const initialState = {
 	posts: [],
@@ -7,10 +7,11 @@ const initialState = {
 };
 export default function(state = initialState, action: any) {
 	switch (action.type) {
-		// case PROFILE_LOADING:
-		//   return {
-		//     ...state,
-		//   };
+		case ADD_POST:
+		  return {
+        ...state,
+        posts: [action.payload, ...state.posts]
+		  };
 
 		default:
 			return state;
