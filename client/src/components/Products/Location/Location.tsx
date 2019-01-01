@@ -5,7 +5,11 @@ interface ILocation {
 }
 
 const Location = (props: ILocation) => {
-	return <small>{props.location}</small>;
+	return (
+		<small>
+			<i className="fas fa-map-marker-alt" /> {props.location}
+		</small>
+	);
 };
 
 export default Location;
