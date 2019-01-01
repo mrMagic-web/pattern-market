@@ -1,7 +1,11 @@
 import * as React from "react";
 
-const Title = () => {
-	return <div>Title</div>;
+interface ITitle {
+	title: string;
+}
+
+const Title = (props: ITitle) => {
+	return <div>{props.title}</div>;
 };
 
 export default Title;

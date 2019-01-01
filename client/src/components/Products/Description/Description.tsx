@@ -1,7 +1,11 @@
 import * as React from "react";
 
-const Description = () => {
-	return <div>Description</div>;
+interface IDescription {
+	description: string;
+}
+
+const Description = (props: IDescription) => {
+	return <div>{props.description}</div>;
 };
 
 export default Description;
