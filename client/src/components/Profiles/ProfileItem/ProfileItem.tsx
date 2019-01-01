@@ -17,8 +17,8 @@ class ProfileItem extends React.Component<any, any> {
 							{profile.status} {isEmpty(profile.company) ? null : <span> at {profile.company}</span>}{" "}
 						</p>
 						<p>{isEmpty(profile.location) ? null : <span>{profile.location}</span>} </p>
-						<Link to={`/profiles/${profile.handle}`} className="btn btn-info">
-							View profile
+						<Link to={`/products/${profile.handle}`} className="btn btn-info">
+							View products
 						</Link>
 					</div>
 					<div className="col-md-4 d-none d-md-block">
