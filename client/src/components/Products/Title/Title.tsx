@@ -5,7 +5,7 @@ interface ITitle {
 }
 
 const Title = (props: ITitle) => {
-	return <div>{props.title}</div>;
+	return <h3>{props.title}</h3>;
 };
 
 export default Title;

@@ -5,7 +5,7 @@ interface ILocation {
 }
 
 const Location = (props: ILocation) => {
-	return <div>{props.location}</div>;
+	return <small>{props.location}</small>;
 };
 
 export default Location;

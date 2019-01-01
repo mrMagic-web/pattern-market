@@ -5,7 +5,7 @@ interface ICompany {
 }
 
 const Company = (props: ICompany) => {
-	return <div>{props.company}</div>;
+	return <p>{props.company}</p>;
 };
 
 export default Company;

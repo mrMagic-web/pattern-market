@@ -2,17 +2,16 @@ import * as React from "react";
 import Company from "../Company";
 import Location from "../Location";
 import Title from "../Title";
-// import Description from "../Description";
+import Description from "../Description";
 
 const ProductContent = (product: any) => {
 	const prod = product.product;
 	return (
-		<div>
+		<div className="col-md-6 card card-body bg-light">
+			<Title title={prod.title} />
 			<Company company={prod.company} />
 			<Location location={prod.location} />
-			<Title title={prod.title} />
-			{prod.description}
-			{/* <Description description={prod.description} /> */}
+			<Description description={prod.description} />
 		</div>
 	);
 };

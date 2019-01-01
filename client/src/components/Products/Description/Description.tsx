@@ -5,7 +5,7 @@ interface IDescription {
 }
 
 const Description = (props: IDescription) => {
-	return <div>{props.description}</div>;
+	return <p>{props.description}</p>;
 };
 
 export default Description;
