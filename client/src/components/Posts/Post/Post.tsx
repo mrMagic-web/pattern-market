@@ -1,7 +1,9 @@
 import * as React from "react";
 
-const Post = () => {
-	return <div>Post</div>;
-};
+class Post extends React.Component {
+	public render() {
+		return <div>Post</div>;
+	}
+}
 
 export default Post;
