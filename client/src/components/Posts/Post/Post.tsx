@@ -1,9 +1,41 @@
 import * as React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import Spinner from "../../Spinner";
+import PostItem from "../PostItem";
+import { getPost } from "../../../actions/postActions";
 
-class Post extends React.Component {
+class Post extends React.Component<any, any> {
+	public componentDidMount() {
+		this.props.getPost(this.props.match.params.id);
+	}
 	public render() {
-		return <div>Post</div>;
+		const { post, loading } = this.props.post;
+		if (post === null || loading) {
+			return <Spinner />;
+		}
+		return (
+			<div className="post">
+				<div className="container">
+					<div className="row">
+						<div className="col-md-12">
+							<Link to="/posts" className="btn btn-light mb-3">
+								Back to posts
+							</Link>
+							<PostItem post={post} showActions={false} />
+						</div>
+					</div>
+				</div>
+			</div>
+		);
 	}
 }
 
-export default Post;
+const mapStateToProps = (state: any) => ({
+	post: state.post
+});
+
+export default connect(
+	mapStateToProps,
+	{ getPost }
+)(Post);

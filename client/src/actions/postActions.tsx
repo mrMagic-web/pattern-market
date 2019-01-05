@@ -34,7 +34,7 @@ export const getPosts = () => (dispatch: any) => {
 // Get post
 export const getPost = (id: string) => (dispatch: any) => {
   dispatch(setPostLoading());
-  axios.get(`/api/post/${id}`)
+  axios.get(`/api/posts/${id}`)
     .then(res => {
       dispatch({
         type: GET_POST,
