@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Spinner from "../../Spinner";
 import PostItem from "../PostItem";
+import CommentForm from "../CommentForm";
 import { getPost } from "../../../actions/postActions";
 
 class Post extends React.Component<any, any> {
@@ -23,6 +24,7 @@ class Post extends React.Component<any, any> {
 								Back to posts
 							</Link>
 							<PostItem post={post} showActions={false} />
+							<CommentForm postId={post._id} />
 						</div>
 					</div>
 				</div>
