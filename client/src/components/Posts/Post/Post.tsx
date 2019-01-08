@@ -26,7 +26,7 @@ class Post extends React.Component<any, any> {
 							</Link>
 							<PostItem post={post} showActions={false} />
 							<CommentForm postId={post._id} />
-							<CommentFeed postId={post._id} comments={post.comments} />
+							{post.comments !== null && <CommentFeed postId={post._id} comments={post.comments} />}
 						</div>
 					</div>
 				</div>
