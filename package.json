@@ -17,7 +17,7 @@
         "@types/classnames": "^2.2.6",
         "bcryptjs": "^2.4.3",
         "body-parser": "^1.18.3",
-        "concurrently": "^4.0.1",
+        "concurrently": "^6.0.0",
         "enzyme": "^3.7.0",
         "express": "^4.16.3",
         "gravatar": "^1.6.0",
